@@ -140,7 +140,7 @@ A _slot_ in which we can write JavaScript expressions.
 ```jsx
 let index = 0;
 
-<div id={'item-' + index} />;
+<div id={`item- + ${index}`} />;
 ```
 
 ---
@@ -160,6 +160,7 @@ render(
 
 ```jsx
 <li className={isOnline && 'green'}>{user.username}</li>
+//same thing as a ternary operator fam
 
 // ⚠️ New notation! another way to use of &&.
 ```
@@ -174,17 +175,28 @@ Convert this JSX snippet to HTML:
 let birthdayCakeImage = '/images/cake.jpg';
 let age = 10;
 
+<div class="wrapper">
+  <img src='/images/cake.jpg' />
+  <p>Happy 10th birthday!</p>
+</div>
+```
 <div className="wrapper">
   <img src={birthdayCakeImage} />
   <p>Happy {age}th birthday!</p>
 </div>;
-```
-
 ---
 
 Convert this one too:
 
 ```jsx
+let agreeToTerms = false;
+
+<div>
+  <label for="terms-of-service">
+    <input type="checkbox" id="terms-of-service" /> I agree to the terms
+  </label>
+</div>;
+
 let agreeToTerms = false;
 
 <div>
@@ -217,6 +229,51 @@ const pets = [
     breed: 'ragdoll',
   },
 ];
+
+<div>
+  <h1 class="title">My pets:</h1>
+  <ul>
+    <li>
+      <h3>Bark Obama</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Age</th>
+            <th>Species</th>
+            <th>Breed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>3</td>
+            <td>dog</td>
+            <td>labradoodle</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+
+    <li>
+      <h3>Chairman Meow</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Age</th>
+            <th>Species</th>
+            <th>Breed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>8</td>
+            <td>cat</td>
+            <td>ragdoll</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+  </ul>
+</div>
 
 <div>
   <h1 className="title">My pets:</h1>
