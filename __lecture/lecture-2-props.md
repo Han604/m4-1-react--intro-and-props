@@ -101,6 +101,21 @@ function VideoPlayer(props) {
     </div>
   );
 }
+
+'js'
+
+function VideoPlayer({videoUrl, width, height, desc}) {
+  return (
+    <div>
+      <video
+        src={videoUrl}
+        width={width}
+        height={height}
+      />
+      <p>desc</p>
+    </div>
+  );
+}
 ```
 
 ---
@@ -109,14 +124,14 @@ function VideoPlayer(props) {
 function Tweet(props) {
   return (
     <div>
-      <Avatar src="/images/bunny.jpg" />
+      <Avatar src={props.src} />
       <div>
         <p>
-          <span className="user-name">Mr. Bunny</span>
-          <span className="handle">@mr-bunny</span>
-          <span className="date">Oct 29th</span>
+          <span className="user-name">{props.userName}</span>
+          <span className="handle">{props.handle}</span>
+          <span className="date">{props.date}</span>
         </p>
-        <p>Alfalfa is the best food don't @ me</p>
+        <p>{props.tweet}</p>
         <div>
           <button>Reply</button>
           <button>Retweet</button>
@@ -135,11 +150,11 @@ function Tweet(props) {
 function Header(props) {
   return (
     <header>
-      <h1>My great website</h1>
+      <h1>{props.title}</h1>
 
       <nav>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
+        <a href={props.nav.first.url}>{props.nav.first.label}</a>
+        <a href={props.nav.second.url}>{props.nav.second.label}</a>
       </nav>
     </header>
   );
@@ -254,12 +269,38 @@ const pets = [
     />
   </ul>
 </div>;
+{
+  function App() {
+    return (
+      <div>
+        {pets.map(pet => (
+          <PetInfo 
+            name={pet.name} 
+            age={pet.age} 
+            species={pet.species} 
+            breed={pet.breed} 
+          />
+        ))}
+      </div>
+    );
+  }
+}
 ```
 
 ---
 
 ```jsx
 const forecasts = [4, -3, 1, 9, 4, 2, -6];
+
+function App() {
+  return (
+    <div>
+      {forecasts.map(day => {
+        <Day day={index + 1} temperature={}>
+      })}
+    </div>
+  )
+}
 
 <div>
   <h1>Weather forecast for the week ahead:</h1>
@@ -285,9 +326,17 @@ const pizzaToppings = [
 ]
 
 <Pizza>
-  <Topping name="green pepper" />
-  <Topping name="broccoli" />
+  {pizzaToppings
+    .filter(topping => topping.isVegetarian === true)
+    .map(topping => <Topping name={topping.name}/>
+  )}
 </Pizza>
+
+function App() {
+  return (
+
+  )
+}
 ```
 
 Hint: You'll need `filter` as well as `map`
